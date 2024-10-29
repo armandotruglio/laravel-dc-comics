@@ -12,7 +12,8 @@ class ComicsController extends Controller
      */
     public function index()
     {
-        //
+        $comics = Comics::all();
+        return view("comics.index", compact("comics"));
     }
 
     /**
@@ -20,7 +21,7 @@ class ComicsController extends Controller
      */
     public function create()
     {
-        //
+        return view("comics.create");
     }
 
     /**
@@ -28,38 +29,16 @@ class ComicsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Comics $comics)
+    public function show(string $id)
     {
-        //
+        $comic = Comics::findOrFail($id);
+        return view("comics.show", compact("comic"));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Comics $comics)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Comics $comics)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Comics $comics)
-    {
-        //
-    }
 }
