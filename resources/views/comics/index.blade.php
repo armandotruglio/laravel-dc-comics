@@ -24,7 +24,15 @@
                 <div class="card-bottom p-2 d-flex justify-content-between border-top">
                     <a href="{{ route("comics.show", $comic->id) }}" class="btn btn-primary"> Dettagli </a>
                     <a href="{{ route("comics.edit", $comic->id) }}" class="btn btn-warning"> Modifica </a>
-                    <a class="btn btn-danger"> Elimina </a>
+                    <form action="{{ route("comics.delete", $comic->id) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method("DELETE")
+
+                        <button type="submit" class="btn btn-danger">
+                            Elimina
+                        </button>
+
+                    </form>
                 </div>
             </div>
         </div>
