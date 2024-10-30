@@ -32,17 +32,7 @@ class ComicsController extends Controller
         $formData = $request->all();
 
 
-        $comic = new Comics();
-        $comic->title = $formData["title"];
-        $comic->description = $formData["description"];
-        $comic->thumb = $formData["thumb"];
-        $comic->price = $formData["price"];
-        $comic->series = $formData["series"];
-        $comic->sale_date = $formData["sale_date"];
-        $comic->type = $formData["type"];
-        $comic->artists = $formData["artists"];
-        $comic->writers = $formData["writers"];
-        $comic->save();
+        $comic = Comics::create($formData);
 
         return redirect()->route("comics.show", [ "id" => $comic->id]);
 
@@ -55,6 +45,37 @@ class ComicsController extends Controller
     {
         $comic = Comics::findOrFail($id);
         return view("comics.show", compact("comic"));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $comic = Comics::findOrFail($id);
+        return view("comics.edit", compact("comic"));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        $formData = $request->all();
+
+        $comic = Comics::findOrFail($id);
+
+        $comic->update($formData);
+
+        return redirect()->route("comics.show", [ "id" => $comic->id]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+
     }
 
 }
