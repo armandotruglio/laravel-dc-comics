@@ -29,8 +29,20 @@ class ComicsController extends Controller
      */
     public function store(Request $request)
     {
-        $formData = $request->all();
+        $request->validate([
+            'title' => 'required|string|unique:comics|min:3|max:255',
+            'decsription' => 'required|string|min:20|max:255',
+            'thumb' => 'required|string|min:3|max:255',
+            'price' => 'required|numeric|min:3|max:255',
+            'series' => 'required|string|min:3|max:255',
+            'sale_date' => 'required|date',
+            'type' => 'required|string|min:3|max:255',
+            'artists' => 'required|string|min:3|max:255',
+            'writers' => 'required|string|min:3|max:255',
+        ]);
 
+
+        $formData = $request->all();
 
         $comic = Comics::create($formData);
 
@@ -61,6 +73,19 @@ class ComicsController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'title' => 'required|string|unique:comics|min:3|max:255',
+            'decsription' => 'required|string|min:20|max:255',
+            'thumb' => 'required|string|min:3|max:255',
+            'price' => 'required|numeric|min:3|max:255',
+            'series' => 'required|string|min:3|max:255',
+            'sale_date' => 'required|date',
+            'type' => 'required|string|min:3|max:255',
+            'artists' => 'required|string|min:3|max:255',
+            'writers' => 'required|string|min:3|max:255',
+        ]);
+
+
         $formData = $request->all();
 
         $comic = Comics::findOrFail($id);

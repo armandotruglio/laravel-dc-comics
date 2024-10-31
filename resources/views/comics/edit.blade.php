@@ -4,6 +4,17 @@
 
 @section("main-content")
 <div class="container">
+    @if  ($errors->any())
+        <div class="row">
+            <div class="col-12 alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
     <div class="row justify-content-around">
         <form class="col-12 col-md-6 card m-3" method="POST" action="{{ route("comics.update", $comic->id) }}">
             @method("PUT")
