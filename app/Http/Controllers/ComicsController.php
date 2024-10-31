@@ -31,9 +31,9 @@ class ComicsController extends Controller
     {
         $request->validate([
             'title' => 'required|string|unique:comics|min:3|max:255',
-            'decsription' => 'required|string|min:20|max:255',
-            'thumb' => 'required|string|min:3|max:255',
-            'price' => 'required|numeric|min:3|max:255',
+            'description' => 'required|string|min:20',
+            'thumb' => 'required|string|min:3',
+            'price' => 'required|string|min:3|max:255',
             'series' => 'required|string|min:3|max:255',
             'sale_date' => 'required|date',
             'type' => 'required|string|min:3|max:255',
